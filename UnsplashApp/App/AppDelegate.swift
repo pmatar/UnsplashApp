@@ -7,6 +7,7 @@
 
 import UIKit
 import Inject
+import Network
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,5 +39,7 @@ extension AppDelegate {
     private func registerDependencies() {
         Container.shared.register(type: CoordinatorFactoryProtocol.self, implementer: CoordinatorFactory())
         Container.shared.register(type: ModuleFactoryProtocol.self, implementer: ModuleFactory())
+        Container.shared.register(type: HTTPClient.self, implementer: AuthorizedHTTPClient())
+        Container.shared.register(type: HTTPResponseMapper.self, implementer: StandardMapper(decoder: .standard))
     }
 }
