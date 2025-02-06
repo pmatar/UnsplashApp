@@ -7,6 +7,7 @@
 
 import Foundation
 import Navigation
+import Inject
 
 final class TabBarCoordinator: BaseCoordinator {
     @Injected private var coordinatorFactory: CoordinatorFactoryProtocol

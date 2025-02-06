@@ -7,6 +7,7 @@
 
 import Foundation
 import Navigation
+import Inject
 
 final class HomeCoordinator: BaseCoordinator {
     @Injected private var moduleFactory: ModuleFactoryProtocol

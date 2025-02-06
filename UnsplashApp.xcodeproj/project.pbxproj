@@ -10,6 +10,7 @@
 		CA2C94934ECCB6F83B71EE93 /* Pods_UnsplashApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE7689F9702591D46036E54 /* Pods_UnsplashApp.framework */; };
 		CF8385EB2D55255400CDA466 /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = CF8385EA2D55255400CDA466 /* Network */; };
 		CF8386002D55510A00CDA466 /* Navigation in Frameworks */ = {isa = PBXBuildFile; productRef = CF8385FF2D55510A00CDA466 /* Navigation */; };
+		CF8386032D55526E00CDA466 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = CF8386022D55526E00CDA466 /* Inject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,7 @@
 		CF6A665C2D54F43B0047E823 /* UnsplashApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8385EC2D5525C100CDA466 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		CF8385FE2D554F4500CDA466 /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
+		CF8386012D55521200CDA466 /* Inject */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Inject; sourceTree = "<group>"; };
 		EDE7689F9702591D46036E54 /* Pods_UnsplashApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnsplashApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,6 +52,7 @@
 				CF8386002D55510A00CDA466 /* Navigation in Frameworks */,
 				CA2C94934ECCB6F83B71EE93 /* Pods_UnsplashApp.framework in Frameworks */,
 				CF8385EB2D55255400CDA466 /* Network in Frameworks */,
+				CF8386032D55526E00CDA466 /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +71,7 @@
 		CF6A66532D54F43B0047E823 = {
 			isa = PBXGroup;
 			children = (
+				CF8386012D55521200CDA466 /* Inject */,
 				CF8385FE2D554F4500CDA466 /* Navigation */,
 				CF8385EC2D5525C100CDA466 /* Network */,
 				CF6A665E2D54F43B0047E823 /* UnsplashApp */,
@@ -432,6 +436,10 @@
 		CF8385FF2D55510A00CDA466 /* Navigation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Navigation;
+		};
+		CF8386022D55526E00CDA466 /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Inject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

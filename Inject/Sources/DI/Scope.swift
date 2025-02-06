@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Scope {
+public enum Scope {
     case global
     case local
 }

@@ -8,11 +8,11 @@
 import Foundation
 
 @propertyWrapper
-struct Injected<D> {
+public struct Injected<D> {
     
     private var dependency: D
     
-    init(_ scope: Scope = .global) {
+    public init(_ scope: Scope = .global) {
         guard let dependency = Container.shared.resolve(scope: scope, type: D.self) else {
             fatalError("No dependency of type \(String(describing: D.Type.self)) registered!")
         }
@@ -20,7 +20,7 @@ struct Injected<D> {
         self.dependency = dependency
     }
     
-    var wrappedValue: D {
+    public var wrappedValue: D {
         get { dependency }
         mutating set { dependency = newValue }
     }

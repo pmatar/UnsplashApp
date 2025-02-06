@@ -7,16 +7,16 @@
 
 import Foundation
 
-final class Container {
+public final class Container {
     private var cache: [ObjectIdentifier: Any] = [:]
     private var generators: [ObjectIdentifier: () -> Any] = [:]
     private let lock = NSRecursiveLock()
     
-    static let shared = Container()
+    public static let shared = Container()
     
     private init() {}
     
-    func register<D>(
+    public func register<D>(
         type: D.Type,
         scope: Scope = .global,
         implementer generator: @autoclosure @escaping () -> D
@@ -32,7 +32,7 @@ final class Container {
         }
     }
     
-    func resolve<D>(
+    public func resolve<D>(
         scope: Scope = .global,
         type: D.Type
     ) -> D? {
