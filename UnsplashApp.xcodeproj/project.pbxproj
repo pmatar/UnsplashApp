@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		CA2C94934ECCB6F83B71EE93 /* Pods_UnsplashApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE7689F9702591D46036E54 /* Pods_UnsplashApp.framework */; };
+		CF8385EB2D55255400CDA466 /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = CF8385EA2D55255400CDA466 /* Network */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		08904FA2F699CEE4056CE84D /* Pods-UnsplashApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashApp.debug.xcconfig"; path = "Target Support Files/Pods-UnsplashApp/Pods-UnsplashApp.debug.xcconfig"; sourceTree = "<group>"; };
 		546639456336571233FF2448 /* Pods-UnsplashApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashApp.release.xcconfig"; path = "Target Support Files/Pods-UnsplashApp/Pods-UnsplashApp.release.xcconfig"; sourceTree = "<group>"; };
 		CF6A665C2D54F43B0047E823 /* UnsplashApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF8385EC2D5525C100CDA466 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		EDE7689F9702591D46036E54 /* Pods_UnsplashApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnsplashApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -44,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA2C94934ECCB6F83B71EE93 /* Pods_UnsplashApp.framework in Frameworks */,
+				CF8385EB2D55255400CDA466 /* Network in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +65,7 @@
 		CF6A66532D54F43B0047E823 = {
 			isa = PBXGroup;
 			children = (
+				CF8385EC2D5525C100CDA466 /* Network */,
 				CF6A665E2D54F43B0047E823 /* UnsplashApp */,
 				CF6A665D2D54F43B0047E823 /* Products */,
 				CB4461F9F5F2D34ECBD9CC44 /* Pods */,
@@ -135,6 +139,8 @@
 			);
 			mainGroup = CF6A66532D54F43B0047E823;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CF6A665D2D54F43B0047E823 /* Products */;
 			projectDirPath = "";
@@ -413,6 +419,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF8385EA2D55255400CDA466 /* Network */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Network;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CF6A66542D54F43B0047E823 /* Project object */;
 }
