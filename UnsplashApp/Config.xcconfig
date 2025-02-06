@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  UnsplashApp
+//
+//  Created by Paul Matar on 06.02.2025.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = gateway.com/v1/public
+API_KEY = asdas12
