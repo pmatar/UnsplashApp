@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol Coordinator: AnyObject {
-    var didFinish: EmptyClosure? { get set }
+public protocol Coordinator: AnyObject {
+    var didFinish: (() -> Void)? { get set }
     
     func start()
 }

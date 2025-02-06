@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Navigation
 
 final class AppCoordinator: BaseCoordinator {
     @Injected private var coordinatorFactory: CoordinatorFactoryProtocol

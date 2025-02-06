@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Navigation
 
 // MARK: - Protocol
 protocol ModuleFactoryProtocol {

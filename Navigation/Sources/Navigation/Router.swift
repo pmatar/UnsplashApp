@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class Router: NSObject {
+public final class Router: NSObject {
     private let navigationController: UINavigationController
-    private var closures: [AnyHashable: EmptyClosure] = [:]
+    private var closures: [AnyHashable: () -> Void] = [:]
     
-    init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         super.init()
         self.navigationController.delegate = self
@@ -20,34 +20,34 @@ final class Router: NSObject {
 
 // MARK: - Router
 extension Router: Routable {
-    func setRoot(_ module: any Presentable) {
+    public func setRoot(_ module: any Presentable) {
         setRoot(module, animated: true, hideNavigationBar: false)
     }
     
-    func setRoot(_ module: any Presentable, animated: Bool) {
+    public func setRoot(_ module: any Presentable, animated: Bool) {
         setRoot(module, animated: animated, hideNavigationBar: false)
     }
     
-    func setRoot(_ module: Presentable, animated: Bool, hideNavigationBar: Bool) {
+    public func setRoot(_ module: Presentable, animated: Bool, hideNavigationBar: Bool) {
         closures.forEach { $0.value() }
         let viewController = module.toPresentable()
         navigationController.setViewControllers([viewController], animated: animated)
         navigationController.isNavigationBarHidden = hideNavigationBar
     }
     
-    func push(_ module: any Presentable, onBack: EmptyClosure?) {
+    public func push(_ module: any Presentable, onBack: (() -> Void)?) {
         push(module, animated: true, hideBottomBar: false, onBack: onBack)
     }
     
-    func push(_ module: any Presentable, animated: Bool, onBack: EmptyClosure?) {
+    public func push(_ module: any Presentable, animated: Bool, onBack: (() -> Void)?) {
         push(module, animated: animated, hideBottomBar: false, onBack: onBack)
     }
     
-    func push(
+    public func push(
         _ module: any Presentable,
         animated: Bool,
         hideBottomBar: Bool,
-        onBack closure: EmptyClosure?
+        onBack closure: (() -> Void)?
     ) {
         let viewController = module.toPresentable()
         guard !(viewController is UINavigationController) else { return }
@@ -59,22 +59,22 @@ extension Router: Routable {
         navigationController.pushViewController(viewController, animated: animated)
     }
     
-    func pop() {
+    public func pop() {
         pop(animated: true)
     }
     
-    func pop(animated: Bool) {
+    public func pop(animated: Bool) {
         guard let viewController = navigationController.popViewController(animated: animated) else {
             return
         }
         executeClosure(viewController)
     }
     
-    func popToRoot() {
+    public func popToRoot() {
         popToRoot(animated: true)
     }
     
-    func popToRoot(animated: Bool) {
+    public func popToRoot(animated: Bool) {
         guard let viewControllers = navigationController.popToRootViewController(animated: animated) else {
             return
         }
@@ -82,11 +82,11 @@ extension Router: Routable {
         viewControllers.forEach { executeClosure($0) }
     }
     
-    func pop(to module: Presentable) {
+    public func pop(to module: Presentable) {
         pop(to: module, animated: true)
     }
     
-    func pop(to module: Presentable, animated: Bool) {
+    public func pop(to module: Presentable, animated: Bool) {
         guard let viewControllers = navigationController.popToViewController(
             module.toPresentable(),
             animated: animated
@@ -96,11 +96,11 @@ extension Router: Routable {
         viewControllers.forEach { executeClosure($0) }
     }
     
-    func present(_ module: any Presentable) {
+    public func present(_ module: any Presentable) {
         present(module, animated: true)
     }
     
-    func present(_ module: any Presentable, animated: Bool) {
+    public func present(_ module: any Presentable, animated: Bool) {
         present(
             module,
             animated: animated,
@@ -110,12 +110,12 @@ extension Router: Routable {
         )
     }
     
-    func present(
+    public func present(
         _ module: any Presentable,
         animated: Bool,
         presentationStyle: UIModalPresentationStyle?,
         transitionStyle: UIModalTransitionStyle?,
-        completion: EmptyClosure?
+        completion: (() -> Void)?
     ) {
         let viewController = module.toPresentable()
         if let presentationStyle {
@@ -127,26 +127,26 @@ extension Router: Routable {
         navigationController.present(viewController, animated: animated, completion: completion)
     }
     
-    func dismiss() {
+    public func dismiss() {
         dismiss(animated: true)
     }
     
-    func dismiss(animated: Bool) {
+    public func dismiss(animated: Bool) {
         dismiss(animated: animated, completion: nil)
     }
     
-    func dismiss(animated: Bool, completion: EmptyClosure?) {
+    public func dismiss(animated: Bool, completion: (() -> Void)?) {
         navigationController.dismiss(animated: animated, completion: completion)
     }
     
-    func openURL(_ url: URL) {
+    public func openURL(_ url: URL) {
         UIApplication.shared.open(url)
     }
 }
 
 // MARK: - UINavigationControllerDelegate
 extension Router: UINavigationControllerDelegate {
-    func navigationController(
+    public func navigationController(
         _ navigationController: UINavigationController,
         didShow viewController: UIViewController,
         animated: Bool

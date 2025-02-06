@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Navigation
 
 final class FavoritesCoordinator: BaseCoordinator {
     @Injected private var moduleFactory: ModuleFactoryProtocol
