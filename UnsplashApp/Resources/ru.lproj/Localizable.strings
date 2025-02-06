@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  UnsplashApp
+
+  Created by Paul Matar on 06.02.2025.
+  
+*/
+"main_key" = "Основное";
+"favorites_key" = "Избранные";

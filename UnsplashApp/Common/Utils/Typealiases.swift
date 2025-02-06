@@ -9,4 +9,5 @@ import Foundation
 
 typealias Closure<T> = (T) -> Void
 typealias EmptyClosure = () -> Void
-typealias Module<T: Output> = (module: Presentable, output: T)
+typealias Module = (module: any Presentable, output: any Output)
+typealias CoordinatorBox = (coordinator: any Coordinator, presenter: any Presentable)

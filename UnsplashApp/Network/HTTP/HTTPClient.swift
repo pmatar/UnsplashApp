@@ -1,0 +1,12 @@
+//
+//  HTTPClient.swift
+//  UnsplashApp
+//
+//  Created by Paul Matar on 06.02.2025.
+//
+
+import Foundation
+
+public protocol HTTPClient {
+    func send(request: URLRequest) async throws -> (Data, HTTPURLResponse)
+}

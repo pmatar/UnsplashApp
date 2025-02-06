@@ -23,6 +23,7 @@ final class AppCoordinator: BaseCoordinator {
 // MARK: - Private methods
 extension AppCoordinator {
     private func runTabBarFlow() {
-        router.setRoot(ViewController())
+        let coordinator = coordinatorFactory.makeTabBarCoordinator(router: router)
+        start(coordinator: coordinator)
     }
 }
