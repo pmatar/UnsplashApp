@@ -43,11 +43,3 @@ struct Log {
         dprint(" ❌ ERROR: \(error.localizedDescription)")
     }
 }
-
-extension Log {
-    @inlinable static func dprint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-        #if DEBUG
-        print(items.lazy.map { "\($0)" }.joined(separator: separator), terminator: terminator)
-        #endif
-    }
-}
