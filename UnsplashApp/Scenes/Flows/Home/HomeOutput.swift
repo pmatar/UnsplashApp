@@ -8,5 +8,5 @@
 import Foundation
 
 protocol HomeOutput: Output {
-    
+    var onSelect: Closure<Photo>? { get set }
 }

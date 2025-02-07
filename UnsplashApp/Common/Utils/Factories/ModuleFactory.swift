@@ -11,8 +11,9 @@ import Navigation
 // MARK: - Protocol
 protocol ModuleFactoryProtocol {
     func makeTabBarModule(_ tabs: [any Presentable]) -> any Presentable
-    func makeHomeModule() -> Module
-    func makeFavoritesModule() -> Module
+    func makeHomeModule() -> Module<HomeOutput>
+    func makeFavoritesModule() -> Module<FavoritesOutput>
+    func makeDetailsModule(photo: Photo) -> Module<DetailsOutput>
 }
 
 // MARK: - Implementation
@@ -24,15 +25,21 @@ struct ModuleFactory: ModuleFactoryProtocol {
         return tabBarController
     }
     
-    func makeHomeModule() -> Module {
+    func makeHomeModule() -> Module<HomeOutput> {
         let viewModel = HomeViewModel()
         let viewController = HomeViewController(viewModel: viewModel)
         return (viewController, viewModel)
     }
     
-    func makeFavoritesModule() -> Module {
+    func makeFavoritesModule() -> Module<FavoritesOutput> {
         let viewModel = FavoritesViewModel()
         let viewController = FavoritesViewController(viewModel: viewModel)
+        return (viewController, viewModel)
+    }
+    
+    func makeDetailsModule(photo: Photo) -> Module<DetailsOutput> {
+        let viewModel = DetailsViewModel(photo: photo)
+        let viewController = DetailsViewController(viewModel: viewModel)
         return (viewController, viewModel)
     }
 }

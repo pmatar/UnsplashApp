@@ -43,5 +43,6 @@ extension AppDelegate {
         Container.shared.register(type: HTTPResponseMapper.self, implementer: StandardMapper(decoder: .standard))
         Container.shared.register(type: PhotosRepository.self, implementer: RemotePhotosRepository())
         Container.shared.register(type: ImageLoadable.self, implementer: ImageLoader())
+        Container.shared.register(type: FavoritesRepository.self, implementer: InMemoryFavoritesRepository())
     }
 }

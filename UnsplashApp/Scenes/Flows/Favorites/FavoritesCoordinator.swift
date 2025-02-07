@@ -18,8 +18,21 @@ final class FavoritesCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        let (module, _) = moduleFactory.makeFavoritesModule()
-
+        let (module, output) = moduleFactory.makeFavoritesModule()
+        output.onSelect = { [weak self] photo in
+            self?.showDetails(for: photo)
+        }
         router.setRoot(module, animated: false)
+    }
+}
+
+// MARK: - Private methods
+extension FavoritesCoordinator {
+    private func showDetails(for photo: Photo) {
+        let (module, output) = moduleFactory.makeDetailsModule(photo: photo)
+        output.onDismiss = { [weak self] in
+            self?.router.dismiss()
+        }
+        router.present(module)
     }
 }

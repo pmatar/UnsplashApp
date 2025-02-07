@@ -9,3 +9,9 @@
 "favorites_key" = "Favorites";
 "photos_key" = "Photos";
 "search_key" = "Search";
+"creation_date" = "Creation Date";
+"author" = "Author";
+"location" = "Location";
+"location_not_specified" = "Not specified";
+"description" = "Description";
+"description_not_available" = "No description";

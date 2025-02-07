@@ -8,5 +8,5 @@
 import Foundation
 
 protocol FavoritesOutput: Output {
-    
+    var onSelect: Closure<Photo>? { get set }
 }

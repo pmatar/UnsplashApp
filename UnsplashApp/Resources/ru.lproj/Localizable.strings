@@ -9,3 +9,9 @@
 "favorites_key" = "Избранные";
 "photos_key" = "Фото";
 "search_key" = "Поиск";
+"creation_date" = "Дата создания";
+"author" = "Автор";
+"location" = "Локация";
+"location_not_specified" = "Не указано";
+"description" = "Описание";
+"description_not_available" = "Нет описания";

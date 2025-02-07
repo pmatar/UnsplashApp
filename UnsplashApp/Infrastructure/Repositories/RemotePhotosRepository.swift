@@ -31,11 +31,8 @@ extension RemotePhotosRepository {
 extension RemotePhotosRepository {
     private func getPhotos(page: Int, perPage: Int = 20) async throws -> [PhotoDTO] {
         let request = try PhotosEndpoint.listPhotos(page: page, perPage: perPage).request()
-        _ = request.url
-//        let response = try await httpClient.send(request: request)
-        let data = UserDefaults.standard.data(forKey: "data")!
-//        return try httpMapper.map(data: response.0, response: response.1)
-        return try httpMapper.map(data: data, response: .init())
+        let response = try await httpClient.send(request: request)
+        return try httpMapper.map(data: response.0, response: response.1)
     }
     
     private func getPhotos(query: String, page: Int, perPage: Int = 20) async throws -> SearchDTO {

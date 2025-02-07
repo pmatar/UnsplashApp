@@ -12,47 +12,28 @@ import Inject
 final class AsyncImageView: UIImageView {
     @Injected private var imageLoader: ImageLoadable
     
-    private var imageUrl: String?
-    private var loadingTask: Task<Void, Never>?
-    
-    deinit {
-        loadingTask?.cancel()
-        loadingTask = nil
-    }
-}
-
-// MARK: - Public methods
-extension AsyncImageView {
-    func setImage(_ imageUrl: String?, placeholder: UIImage? = nil) {
-        if let placeholder {
-            self.image = placeholder
+    private var imageUrl: String? {
+        didSet {
+            dowloadImage()
         }
-        guard self.imageUrl != imageUrl else { return }
-        self.imageUrl = imageUrl
-        
-        loadingTask?.cancel()
-        downloadImage()
     }
-}
-
-// MARK: - Private methods
-extension AsyncImageView {
-    private func downloadImage() {
+    
+    func setImage(_ imageUrl: String?, placeholder: UIImage? = nil) {
+        self.image = placeholder
+        self.imageUrl = imageUrl
+    }
+    
+    private func dowloadImage() {
         guard let imageUrl else { return }
         
-        loadingTask = Task { [weak self] in
-            guard let self else { return }
-            
+        Task { @MainActor in
             do {
                 let loadedImage = try await imageLoader.load(from: imageUrl)
-                
                 if imageUrl == self.imageUrl {
-                    await MainActor.run {
-                        self.image = loadedImage
-                    }
+                    image = loadedImage
                 }
             } catch {
-                Log.error(error)
+                debugPrint(error)
             }
         }
     }

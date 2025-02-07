@@ -14,12 +14,13 @@ final class HomeViewController: BaseViewController<HomeView> {
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init()
+        tabBarItem = UITabBarItem(title: L.main.value, image: UIImage(systemName: "house.fill"), tag: 1)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        bindVieModel()
+        bindViewModel()
         Task { await viewModel.fetch() }
     }
 }
@@ -27,7 +28,7 @@ final class HomeViewController: BaseViewController<HomeView> {
 // MARK: - Private methods
 extension HomeViewController {
     private func setup() {
-        tabBarItem = UITabBarItem(title: L.main.value, image: UIImage(systemName: "house.fill"), tag: 1)
+        title = L.photos.value
         customView.refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         customView.collectionView.delegate = self
         customView.searchController.searchResultsUpdater = self
@@ -36,7 +37,7 @@ extension HomeViewController {
         definesPresentationContext = true
     }
     
-    private func bindVieModel() {
+    private func bindViewModel() {
         viewModel.photos
             .receive(on: DispatchQueue.main)
             .sink { [weak self] photos in
@@ -87,7 +88,7 @@ extension HomeViewController {
         var snapshot = PhotoSnapshot()
         snapshot.appendSections([0])
         snapshot.appendItems(items)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
 
@@ -96,7 +97,7 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
         guard let model = dataSource.itemIdentifier(for: indexPath) else { return }
-        _ = model.fullUrl
+        viewModel.onSelect?(model)
     }
     
     func collectionView(
@@ -110,7 +111,7 @@ extension HomeViewController: UICollectionViewDelegate {
         guard let footer = view as? LoadingCell else { return }
         
         footer.startAnimating()
-        Task { await viewModel.fetch() }
+        Task { await viewModel.paginate() }
         footer.stopAnimating()
     }
 }
@@ -121,8 +122,6 @@ extension HomeViewController: UISearchResultsUpdating {
         guard let query = searchController.searchBar.text else { return }
         viewModel.currentQuery.send(query)
     }
-    
-    
 }
 
 // MARK: - Actions

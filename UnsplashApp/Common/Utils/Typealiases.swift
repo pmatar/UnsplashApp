@@ -10,5 +10,5 @@ import Navigation
 
 typealias Closure<T> = (T) -> Void
 typealias EmptyClosure = () -> Void
-typealias Module = (module: any Presentable, output: any Output)
+typealias Module<T> = (module: any Presentable, output: T)
 typealias CoordinatorBox = (coordinator: any Coordinator, presenter: any Presentable)

@@ -10,6 +10,8 @@ import Inject
 import Combine
 
 final class HomeViewModel: HomeOutput {
+    var onSelect: Closure<Photo>?
+    
     private(set) var photos = CurrentValueSubject<[Photo], Never>([])
     private(set) var currentQuery = CurrentValueSubject<String, Never>("")
     private(set) var canPaginate: Bool = true
@@ -24,6 +26,10 @@ extension HomeViewModel {
         currentPage = 0
         photos.send([])
         await fetch(with: query)
+    }
+    
+    func paginate() async {
+        await fetch(with: currentQuery.value)
     }
     
     func fetch(with query: String = "") async {

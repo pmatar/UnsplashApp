@@ -9,8 +9,8 @@ import UIKit
 
 final class HomeView: BaseView {
     // MARK: - Outlets
-    private(set) lazy var collectionView: PhotoCollectionView = {
-        let cv = PhotoCollectionView()
+    private(set) lazy var collectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: .photoCollectionLayout(withFooter: true))
         cv.backgroundColor = .clear
         cv.showsHorizontalScrollIndicator = false
         cv.keyboardDismissMode = .onDrag
@@ -51,7 +51,8 @@ extension HomeView {
         addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.verticalEdges.equalTo(self.safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
         }
     }
 }

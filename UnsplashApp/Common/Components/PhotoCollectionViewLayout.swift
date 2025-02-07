@@ -1,5 +1,5 @@
 //
-//  PhotoCollectionView.swift
+//  PhotoCollectionViewLayout.swift
 //  UnsplashApp
 //
 //  Created by Paul Matar on 07.02.2025.
@@ -7,19 +7,8 @@
 
 import UIKit
 
-final class PhotoCollectionView: UICollectionView {
-    
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: .zero, collectionViewLayout: .photoCollectionLayout)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 extension UICollectionViewLayout {
-    static let photoCollectionLayout: UICollectionViewCompositionalLayout = {
+    static func photoCollectionLayout(withFooter: Bool = false) -> UICollectionViewCompositionalLayout {
         let item = CompositionalLayout.createItem(width: .fractionalWidth(0.5), height: .fractionalHeight(1), padding: 1)
         
         let fullItem = CompositionalLayout.createItem(width: .fractionalWidth(1), height: .fractionalHeight(1), padding: 1)
@@ -40,18 +29,20 @@ extension UICollectionViewLayout {
         
         let section = NSCollectionLayoutSection(group: mainGroup)
         
-        let footerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(44)
-        )
-        
-        let footer = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: footerSize,
-            elementKind: UICollectionView.elementKindSectionFooter,
-            alignment: .bottom
-        )
-        section.boundarySupplementaryItems = [footer]
+        if withFooter {
+            let footerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(44)
+            )
+            
+            let footer = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: footerSize,
+                elementKind: UICollectionView.elementKindSectionFooter,
+                alignment: .bottom
+            )
+            section.boundarySupplementaryItems = [footer]
+        }
         
         return UICollectionViewCompositionalLayout(section: section)
-    }()
+    }
 }
