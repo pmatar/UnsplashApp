@@ -15,4 +15,9 @@ final class HomeViewController: BaseViewController<HomeView> {
         super.init()
         tabBarItem = UITabBarItem(title: L.main.value, image: UIImage(systemName: "house.fill"), tag: 1)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Task { await viewModel.fetch() }
+    }
 }

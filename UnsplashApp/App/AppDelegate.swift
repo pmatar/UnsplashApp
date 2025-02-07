@@ -41,5 +41,6 @@ extension AppDelegate {
         Container.shared.register(type: ModuleFactoryProtocol.self, implementer: ModuleFactory())
         Container.shared.register(type: HTTPClient.self, implementer: AuthorizedHTTPClient())
         Container.shared.register(type: HTTPResponseMapper.self, implementer: StandardMapper(decoder: .standard))
+        Container.shared.register(type: PhotosRepository.self, implementer: RemotePhotosRepository())
     }
 }

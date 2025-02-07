@@ -10,17 +10,20 @@ import Network
 
 enum PhotosEndpoint: UnsplashEndpoint {
     case listPhotos(page: Int, perPage: Int)
+    case searchPhotos(query: String, page: Int, perPage: Int)
     
     var path: String {
         switch self {
         case .listPhotos:
             "/photos"
+        case .searchPhotos:
+            "/search/photos"
         }
     }
     
     var method: Network.HTTPMethod {
         switch self {
-        case .listPhotos:
+        case .listPhotos, .searchPhotos:
             return .GET
         }
     }
@@ -29,6 +32,8 @@ enum PhotosEndpoint: UnsplashEndpoint {
         switch self {
         case .listPhotos(page: let page, perPage: let perPage):
             return ["page": page, "per_page": perPage]
+        case .searchPhotos(query: let query, page: let page, perPage: let perPage):
+            return ["query": query, "page": page, "per_page": perPage]
         }
     }
 }

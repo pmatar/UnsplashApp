@@ -6,7 +6,16 @@
 //
 
 import Foundation
+import Inject
 
 final class HomeViewModel: HomeOutput {
+    @Injected private var repository: PhotosRepository
     
+    func fetch() async {
+        do {
+            let response = try await repository.fetchPhotos(page: 1)
+        } catch {
+            Log.error(error)
+        }
+    }
 }
