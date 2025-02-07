@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserDTO: Codable {
+struct UserDTO: Decodable {
    let id, username, name: String
    let portfolioUrl: String?
    let bio, location: String?

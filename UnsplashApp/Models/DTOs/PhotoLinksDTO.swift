@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PhotoLinksDTO: Codable {
+struct PhotoLinksDTO: Decodable {
    let `self`, html, download, downloadLocation: String
    
    enum CodingKeys: String, CodingKey {

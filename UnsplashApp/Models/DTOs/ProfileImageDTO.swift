@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct ProfileImageDTO: Codable {
+struct ProfileImageDTO: Decodable {
    let small, medium, large: String
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CollectionDTO: Codable {
+struct CollectionDTO: Decodable {
    let id: Int
    let title: String
    let publishedAt, lastCollectedAt, updatedAt: String

@@ -14,12 +14,30 @@ final class HomeView: BaseView {
         cv.backgroundColor = .clear
         cv.showsHorizontalScrollIndicator = false
         cv.keyboardDismissMode = .onDrag
-        cv.contentInset = .init(top: 16, left: 0, bottom: 0, right: 0)
+        cv.contentInsetAdjustmentBehavior = .always
         cv.refreshControl = refreshControl
+        cv.register(
+            LoadingCell.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: String(describing: LoadingCell.self)
+        )
         return cv
     }()
     
     private(set) lazy var refreshControl = UIRefreshControl()
+    
+    private(set) lazy var paginationIndicator: UIActivityIndicatorView = {
+        let ai = UIActivityIndicatorView(style: .medium)
+        ai.hidesWhenStopped = true
+        return ai
+    }()
+    
+    private(set) lazy var searchController: UISearchController = {
+        let sc = UISearchController()
+        sc.obscuresBackgroundDuringPresentation = false
+        sc.searchBar.placeholder = L.search.value
+        return sc
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,8 +51,7 @@ extension HomeView {
         addSubview(collectionView)
         
         collectionView.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(self.safeAreaLayoutGuide)
-            make.horizontalEdges.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
 }

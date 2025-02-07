@@ -12,6 +12,6 @@ class BaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.tintColor = .black
-        navigationBar.prefersLargeTitles = true
+        navigationBar.isTranslucent = true
     }
 }

@@ -40,6 +40,18 @@ extension UICollectionViewLayout {
         
         let section = NSCollectionLayoutSection(group: mainGroup)
         
+        let footerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(44)
+        )
+        
+        let footer = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: footerSize,
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottom
+        )
+        section.boundarySupplementaryItems = [footer]
+        
         return UICollectionViewCompositionalLayout(section: section)
     }()
 }

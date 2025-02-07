@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct UserLinksDTO: Codable {
+struct UserLinksDTO: Decodable {
    let `self`, html, photos, likes, portfolio: String
 }

@@ -11,12 +11,52 @@ import Combine
 
 final class HomeViewModel: HomeOutput {
     private(set) var photos = CurrentValueSubject<[Photo], Never>([])
-    @Injected private var repository: PhotosRepository
+    private(set) var currentQuery = CurrentValueSubject<String, Never>("")
+    private(set) var canPaginate: Bool = true
     
-    func fetch() async {
+    private var currentPage = 0
+    @Injected private var repository: PhotosRepository
+}
+
+// MARK: - Public methods
+extension HomeViewModel {
+    func search(query: String) async {
+        currentPage = 0
+        photos.send([])
+        await fetch(with: query)
+    }
+    
+    func fetch(with query: String = "") async {
+        canPaginate = false
+        defer { canPaginate = true }
+        
         do {
-            let response = try await repository.fetchPhotos(page: 1)
-            photos.send(response)
+            let response = if query.isEmpty {
+                try await repository.fetchPhotos(page: currentPage + 1)
+            } else {
+                try await repository.searchPhotos(query: query, page: currentPage + 1)
+            }
+            
+            currentPage += 1
+            
+            let currentIds = Set(photos.value.map(\.id))
+            let newPhotos = response.filter { !currentIds.contains($0.id) }
+            
+            photos.send(photos.value + newPhotos)
+        } catch {
+            Log.error(error)
+        }
+    }
+    
+    func refresh() async {
+        do {
+            let response = try await repository.fetchPhotos(page: 0)
+            
+            await MainActor.run {
+                currentPage = 0
+                photos.send([])
+                photos.send(response)
+            }
         } catch {
             Log.error(error)
         }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct UrlsDTO: Codable {
+struct UrlsDTO: Decodable {
    let raw, full, regular, small, thumb: String
 }

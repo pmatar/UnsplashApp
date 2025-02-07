@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PhotoDTO: Codable {
+struct PhotoDTO: Decodable {
    let id: String
    let createdAt, updatedAt: String
    let width, height: Int

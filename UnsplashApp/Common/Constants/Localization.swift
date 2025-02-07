@@ -11,6 +11,7 @@ enum L: String {
     case main = "main_key"
     case favorites = "favorites_key"
     case photos = "photos_key"
+    case search = "search_key"
     
     var value: String {
         NSLocalizedString(rawValue, comment: "")
