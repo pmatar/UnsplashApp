@@ -23,8 +23,10 @@ final class AsyncImageView: UIImageView {
 
 // MARK: - Public methods
 extension AsyncImageView {
-    func setImage(_ imageUrl: String?, placeholder: UIImage?) {
-        self.image = placeholder
+    func setImage(_ imageUrl: String?, placeholder: UIImage? = nil) {
+        if let placeholder {
+            self.image = placeholder
+        }
         guard self.imageUrl != imageUrl else { return }
         self.imageUrl = imageUrl
         

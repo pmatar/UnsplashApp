@@ -18,6 +18,11 @@ final class HomeViewController: BaseViewController<HomeView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Task { await viewModel.fetch() }
+
     }
+}
+
+// MARK: - Private methods
+extension HomeViewController {
+    
 }
