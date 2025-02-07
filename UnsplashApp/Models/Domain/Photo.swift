@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Photo {
+struct Photo: Hashable {
     let id: String
     let location: String?
     let createdAt: Date?

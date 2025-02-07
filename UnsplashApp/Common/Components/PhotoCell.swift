@@ -12,18 +12,19 @@ final class PhotoCell: UICollectionViewCell {
     private lazy var imageView: AsyncImageView = {
         let iv = AsyncImageView()
         iv.contentMode = .scaleAspectFill
-        iv.setRadius(20)
+        iv.setRadius(4, mask: true)
         return iv
     }()
     
     private lazy var container: UIView = {
         let v = UIView()
-        v.setRadius(20)
+        v.setRadius(4, mask: true)
         return v
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupViews()
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +42,6 @@ extension PhotoCell {
 // MARK: - Private methods
 extension PhotoCell {
     private func setupViews() {
-        contentView.backgroundColor = .clear
         contentView.addSubview(container)
         
         container.snp.makeConstraints { make in
@@ -50,8 +50,7 @@ extension PhotoCell {
         container.addSubview(imageView)
         
         imageView.snp.makeConstraints { make in
-            make.leading.verticalEdges.equalToSuperview()
-            make.width.equalTo(88)
+            make.edges.equalToSuperview()
         }
     }
 }

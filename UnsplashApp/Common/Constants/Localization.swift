@@ -10,6 +10,7 @@ import Foundation
 enum L: String {
     case main = "main_key"
     case favorites = "favorites_key"
+    case photos = "photos_key"
     
     var value: String {
         NSLocalizedString(rawValue, comment: "")

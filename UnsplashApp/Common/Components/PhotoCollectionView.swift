@@ -35,7 +35,7 @@ extension UICollectionViewLayout {
         
         let mainGroup = CompositionalLayout.createGroup(alignment: .vertical,
                                                         width: .fractionalWidth(1),
-                                                        height: .fractionalHeight(0.5),
+                                                        height: .fractionalHeight(0.9),
                                                         items: [mainItem, hGroup])
         
         let section = NSCollectionLayoutSection(group: mainGroup)
